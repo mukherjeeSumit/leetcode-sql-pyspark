@@ -28,7 +28,11 @@ address_df = spark \
 
 # join person and address dataframes
 result_df = person_df.alias("person") \
-.join(address_df.alias("address"), col("person.person_id") == col("address.person_id"),"left") \
+.join(
+    address_df.alias("address"), 
+    col("person.person_id") == col("address.person_id"),
+    "left"
+) \
 .select(
     col("person.first_name"), 
     col("person.last_name"), 
