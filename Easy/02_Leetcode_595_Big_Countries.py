@@ -21,8 +21,12 @@ result_df = world_df.alias("world") \
 .select(
     col("world.name"),
     col("world.population"),
-    col("world.area")) \
-.filter((col("world.area") >= 3000000) | (col("world.population") >= 25000000))
+    col("world.area")
+) \
+.filter(
+    (col("world.area") >= 3000000) | 
+    (col("world.population") >= 25000000)
+)
 
 # print result dataframe
 result_df.show(truncate=False) 
