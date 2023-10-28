@@ -20,7 +20,10 @@ customer_df = spark \
 # result dataframe
 result_df = customer_df.alias("customer") \
 .select(col("customer.name")) \
-.filter((col("customer.referee_id") != 2) | (col("customer.referee_id").isNull()))
+.filter(
+  (col("customer.referee_id") != 2) | 
+  (col("customer.referee_id").isNull())
+)
 
 # print result dataframe
 result_df.show(truncate=False) 
