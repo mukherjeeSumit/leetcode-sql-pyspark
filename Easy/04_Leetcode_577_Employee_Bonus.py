@@ -30,12 +30,19 @@ bonus_df = spark \
 
 # join employee and bonus dataframes
 result_df = employee_df.alias("employee") \
-.join(bonus_df.alias("bonus"), col("employee.employee_id") == col("bonus.employee_id"),"left") \
+.join(
+    bonus_df.alias("bonus"), 
+    col("employee.employee_id") == col("bonus.employee_id"),
+    "left"
+) \
 .select(
     col("employee.name"), 
     col("bonus.bonus")
     ) \
-.filter((col("bonus.bonus") < 1000) | (col("bonus.bonus").isNull()))
+.filter(
+    (col("bonus.bonus") < 1000) | 
+    (col("bonus.bonus").isNull())
+)
 
 # print result dataframe
 result_df.show(truncate=False) 
